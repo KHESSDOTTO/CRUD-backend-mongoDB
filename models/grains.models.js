@@ -3,21 +3,21 @@ import { Schema, model } from "mongoose";
 const grainSchema = new Schema(
   {
     name: {
-      type: string,
+      type: String,
       required: true,
       trim: true,
     },
     description: {
-      type: string,
+      type: String,
       required: true,
       trim: true,
     },
     kcalper100g: {
-      type: number,
+      type: Number,
       required: true,
     },
     istasty: {
-      type: boolean,
+      type: Boolean,
       required: true,
     },
   },
