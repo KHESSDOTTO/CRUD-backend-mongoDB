@@ -26,5 +26,5 @@ const grainSchema = new Schema(
   }
 );
 
-const grainsModel = model("Grain", grainSchema);
-export default grainsModel;
+const GrainsModel = model("Grain", grainSchema);
+export default GrainsModel;
