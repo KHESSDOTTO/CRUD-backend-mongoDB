@@ -3,7 +3,7 @@ import GrainsModel from "../models/grains.models.js";
 
 const grainsRouter = express.Router();
 
-GrainsModel.post("/", async (req, res) => {
+grainsRouter.post("/", async (req, res) => {
   try {
     const newGrain = await GrainsModel.create({ ...req.body });
     return res.status(201).json(newGrain);
