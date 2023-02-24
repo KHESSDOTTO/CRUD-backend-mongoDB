@@ -19,6 +19,7 @@ grainsRouter.get("/", async (req, res) => {
     return res.status(200).json(grainsList);
   } catch (e) {
     console.log(e);
+    return res.status(500).json(grainSel);
   }
 });
 
@@ -32,7 +33,7 @@ grainsRouter.get("/:id", async (req, res) => {
     return res.status(200).json(grainSel);
   } catch (e) {
     console.log(e);
-    return res.status(404).json("Grain not found.");
+    return res.status(400).json(e);
   }
 });
 
@@ -44,10 +45,13 @@ grainsRouter.put("/:id", async (req, res) => {
       { ...req.body },
       { new: true, runValidators: true }
     );
+    if (!grainSel) {
+      return res.status(404).json("Grain not found.");
+    }
     return res.status(200).json(grainSel);
   } catch (e) {
     console.log(e);
-    return res.status(404).json("Grain not found.");
+    return res.status(400).json(e);
   }
 });
 
@@ -55,10 +59,13 @@ grainsRouter.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const grainSel = await GrainsModel.findByIdAndDelete(id);
+    if (!grainSel) {
+      return res.status(404).json("Grain not found.");
+    }
     return res.status(200).json(grainSel);
   } catch (e) {
     console.log(e);
-    return res.status(404).json("Grain not found.");
+    return res.status(400).json(e);
   }
 });
 
